@@ -1,0 +1,42 @@
+#+title: Reference implementation of Bubblesort to demonstrate system implementation in Elm
+
+* Setup
+  
+  Create a new directory for your application and cd into the directory.
+
+  #+BEGIN_SRC bash
+  mkdir myapp
+  cd myapp
+  #+END_SRC
+
+  initialize elm in the directory
+
+  #+BEGIN_SRC bash
+  elm init
+  #+END_SRC
+
+  add the following packages to elm.json dependencies.
+
+  #+BEGIN_SRC json
+  "MacCASOutreach/graphicsvg": "7.1.0",
+  "elm/browser": "1.0.2",
+  "elm/core": "1.0.4",
+  "elm/html": "1.0.0",
+  "elm/http": "2.0.0",
+  "elm/json": "1.1.3",
+  "elm/random": "1.0.0",
+  "elm/svg": "1.0.1",
+  "elm/time": "1.0.0",
+  "elm-community/list-extra": "8.2.3",
+  #+END_SRC
+
+  using =npm= install [[https://github.com/elm-explorations/test][elm-test]].
+
+  run =elm-test init=.
+
+  in the =tests= directory that is created automatically, add testing
+  files.
+
+  to run a test: =elm-test= in the shell.
+
+  
