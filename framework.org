@@ -1,9 +1,23 @@
-#+title: Framework for System Implementation in Elm
+#+title: System Implementation in Elm
 
 * Introduction
-  
-  To implement a system in elm, you need to define the following
-  things.
+
+** System definition
+
+   A system is defined as a sextuple $(X, X_{0}, U, \rightarrow, Y,
+   H)$.
+
+   - $X$: Set of states
+   - $X_{0}$: Set of initial states ($X_{0} \in X$)
+   - $U$: Set of inputs to the system
+   - $\rightarrow$: transition relation
+   - $Y$: Set of outputs
+   - $H$: Output map ($X \rightarrow Y$)
+     
+   To implement a complete system, each of these components need to be
+   well defined and implemented.  This document describes the process
+   of implementing each of these components in elm.  The result is a
+   module that can be run as an interactive web application.
 
 * Define Model Type
 
