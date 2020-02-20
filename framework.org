@@ -28,7 +28,7 @@
      - MACASOutreach/GraphicSVG :: for views in SVG
      - elm-community/list-extra :: functions for list
    - A reference implementation of systems for bubblesort along with
-     test cases can be found [[https://github.com/ojas1/SoftwareFoundations2020/bs][here]].
+     test cases can be found [[file:reference-bs][here]].
 
 * Define Model Type
 
