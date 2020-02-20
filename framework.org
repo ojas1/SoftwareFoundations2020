@@ -1,0 +1,29 @@
+#+title: Framework for System Implementation in Elm
+
+Follow the given template to implement transition systems in elm.
+
+For each transition system do the following.
+
+* Define Model Type
+
+  A =Model= is the set of states in the system.  This corresponds
+  to $X$ in the /sextuple/ $(X, X_{0}, U, \rightarrow, Y, H)$ that
+  defines a system.
+
+* Initialize the Model
+  
+  After defining the set of states in the Model type, you need to give
+  an initial state to the model.
+
+  If you define =init= as an initialization of the model then $init
+  \in X_{0}$.
+
+  
+  
+* Define Message Type
+
+* Implement Update Function
+
+* Implement transition functions
+
+* Implement View Functions
