@@ -1,14 +1,31 @@
 #+title: Framework for System Implementation in Elm
 
-Follow the given template to implement transition systems in elm.
-
-For each transition system do the following.
+* Introduction
+  
+  To implement a system in elm, you need to define the following
+  things.
 
 * Define Model Type
 
   A =Model= is the set of states in the system.  This corresponds
   to $X$ in the /sextuple/ $(X, X_{0}, U, \rightarrow, Y, H)$ that
   defines a system.
+
+  Following example shows the model type that contains an array and a
+  custom type.
+  
+  #+name: model
+  #+BEGIN_SRC elm
+    type Selections
+        = NoneSelected
+        | OneSelected Int
+        | BothSelected Int Int
+            
+    type alias Model =
+        { array : List Int
+        , selections : Selections
+        }
+  #+END_SRC
 
 * Initialize the Model
   
@@ -18,12 +35,65 @@ For each transition system do the following.
   If you define =init= as an initialization of the model then $init
   \in X_{0}$.
 
-  
-  
+  #+name: initialize
+  #+BEGIN_SRC elm
+    init =
+      { array = [30, 24, 56, 5, 0]
+      , selections = (BothSelected 0 2)
+      }
+  #+END_SRC
+
 * Define Message Type
+
+  =Messaging= is a mechanism to give inputs to the system at runtime.
+  This corresponds to $U$ in the system definition.  Every message has
+  a name, and may or may not have data associated with it, depending
+  the definition of the message type.
+    
+  #+name: msg
+  #+BEGIN_SRC elm
+    Msg = Select Int
+      | Swap
+  #+END_SRC
+  
+  In the above example, the =Msg= type defines two message types:
+  =Select Int= and =Swap=.  =Msg= is an example of a /union type/.
+
+  The first message type =Select Int= holds an integer value, which is
+  passed to systems at runtime.  For example, =Select 3= is an
+  instance of the =Msg= type.  =Swap= is also an instance of =Msg=
+  type.  =Swap= does not contain any additional data, but it is itself
+  a complete message, telling the system to perform a swap operation.  
 
 * Implement Update Function
 
-* Implement transition functions
+  The update function defines the actions corresponding to each of the
+  message types.  These actions are performed at runtime, when the
+  system receives a message.  The update function corresponds to
+  transition relation $\rightarrow$, in the system definition.
+
+  #+name: update
+  #+BEGIN_SRC elm
+    update : Msg -> Model -> Model
+    update msg model =
+        let {array, selections} = model
+        in
+            case msg of
+                Select i ->
+                    select i selections
+                Swap ->
+                    swap array selections
+  #+END_SRC
 
 * Implement View Functions
+  
+  So, we have $X$, $X_{0}$, $U$, $\rightarrow$ and $Y = X$.  Only
+  thing remaining is $H$: The output map.  The output map is defined
+  by the =view= function.
+
+  #+name: view
+  #+BEGIN_SRC elm
+    view : Model -> Html Msg
+    view model =
+        Html.div [] [viewArray model.array model.selections]
+  #+END_SRC
