@@ -19,6 +19,17 @@
    of implementing each of these components in elm.  The result is a
    module that can be run as an interactive web application.
 
+** Elm
+   
+   - Follow the [[https://guide.elm-lang.org/][elm guide]] to learn the core language and the
+     architecture.
+   - Additional pacakges:
+     - elm-community/elm-test :: unit testing
+     - MACASOutreach/GraphicSVG :: for views in SVG
+     - elm-community/list-extra :: functions for list
+   - A reference implementation of systems for bubblesort along with
+     test cases can be found [[https://github.com/ojas1/SoftwareFoundations2020/bs][here]].
+
 * Define Model Type
 
   A =Model= is the set of states in the system.  This corresponds
@@ -40,7 +51,18 @@
         , selections : Selections
         }
   #+END_SRC
+  
+  There is no single unique way to define a model and your state space
+  depends on the problems as well as the interactions you want to
+  implement in the application.
 
+  For example, in the above model, the problem of sorting an array
+  only requires the =array= field.  The second field =selections= is
+  added because the user will perform sorting through swap operation,
+  which requires two integer indices, which will be decided at the
+  runtime by the user.  We, will see that as the interction model
+  evolves, the system definition also needs to change accordingly.
+  
 * Initialize the Model
   
   After defining the set of states in the Model type, you need to give
@@ -98,6 +120,13 @@
                 Swap ->
                     swap array selections
   #+END_SRC
+
+** Testing
+
+   Each of functions used in the update function, should have unit
+   tests to verify the behavior each of the functions.
+
+   Look at the reference implementation for details.
 
 * Implement View Functions
   
