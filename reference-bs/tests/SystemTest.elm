@@ -17,6 +17,39 @@ b1suite =
               , test "select when both are selected" <|
                   \_ ->
                     Expect.equal (select 3 (BothSelected 4 5)) (BothSelected 4 5)
+              , test "deselect one item when one is already present" <|
+                    \_ ->
+                    Expect.equal (deselect 3 (OneSelected 3)) NoneSelected
+              , test "deselect one item when both items are selected" <|
+                  \_ ->
+                    Expect.equal (deselect 1 (BothSelected 1 2)) (OneSelected 2)
+              , test "deselect one item (second) when both items are selected" <|
+                  \_ ->
+                    Expect.equal (deselect 2 (BothSelected 1 2)) (OneSelected 1)
+              , test "deselect one item (the wrong one) when both items are selected" <|
+                  \_ ->
+                    Expect.equal (deselect 1 (BothSelected 5 2)) (BothSelected 5 2)
+              , test "deselect when none is selected" <|
+                  \_ ->
+                    Expect.equal (deselect 1 NoneSelected) NoneSelected                        
+              , test "isSelected when item is selected" <|
+                  \_ ->
+                      Expect.equal (isSelected 1 (OneSelected 1)) True
+              , test "isSelected when item is selected (one of two)" <|
+                  \_ ->
+                      Expect.equal (isSelected 1 (BothSelected 1 4)) True
+              , test "isSelected when item is selected (the second one)" <|
+                  \_ ->
+                      Expect.equal (isSelected 4 (BothSelected 1 4)) True
+              , test "isSelected when not selected" <|
+                  \_ ->
+                      Expect.equal (isSelected 2 (BothSelected 1 4)) False
+              , test "isSelected when not selected (in one)" <|
+                  \_ ->
+                      Expect.equal (isSelected 2 (OneSelected 1)) False
+              , test "isSelected when not selected (Noneselected)" <|
+                  \_ ->
+                      Expect.equal (isSelected 2 NoneSelected) False
               ]
         , describe "swapping"
             [ test "both selected" <|
